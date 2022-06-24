@@ -1,3 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
-Console.WriteLine("teste");
+﻿using BE7_FS4_UC9.Classes;
+
+PessoaFisica novaPf = new PessoaFisica();
+novaPf.nome = "Lozano";
+
+Console.WriteLine($"Nome: {novaPf.nome}");
+
