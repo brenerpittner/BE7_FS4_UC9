@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Documentos\\Cursos On-line\\SENAI\\Programador Full Stack\\4. ESPECÍFICO II - Luiz Lozano\\PFS_UC12 - Codificação para Back-End\\SA2\\BE7_FS4_UC9\\BE7_FS4_UC9.csproj",
+      "projectUniqueName": "F:\\Documentos\\Cursos On-line\\SENAI\\Programador Full Stack\\4. ESPECÍFICO II - Luiz Lozano\\PFS_UC12 - Codificação para Back-End\\SA2\\atividade 3\\projeto_principal\\BE7_FS4_UC9.csproj",
       "projectName": "BE7_FS4_UC9",
-      "projectPath": "F:\\Documentos\\Cursos On-line\\SENAI\\Programador Full Stack\\4. ESPECÍFICO II - Luiz Lozano\\PFS_UC12 - Codificação para Back-End\\SA2\\BE7_FS4_UC9\\BE7_FS4_UC9.csproj",
+      "projectPath": "F:\\Documentos\\Cursos On-line\\SENAI\\Programador Full Stack\\4. ESPECÍFICO II - Luiz Lozano\\PFS_UC12 - Codificação para Back-End\\SA2\\atividade 3\\projeto_principal\\BE7_FS4_UC9.csproj",
       "packagesPath": "C:\\Users\\Brener Pittner\\.nuget\\packages\\",
-      "outputPath": "F:\\Documentos\\Cursos On-line\\SENAI\\Programador Full Stack\\4. ESPECÍFICO II - Luiz Lozano\\PFS_UC12 - Codificação para Back-End\\SA2\\BE7_FS4_UC9\\obj\\",
+      "outputPath": "F:\\Documentos\\Cursos On-line\\SENAI\\Programador Full Stack\\4. ESPECÍFICO II - Luiz Lozano\\PFS_UC12 - Codificação para Back-End\\SA2\\atividade 3\\projeto_principal\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Brener Pittner\\AppData\\Roaming\\NuGet\\NuGet.Config"
