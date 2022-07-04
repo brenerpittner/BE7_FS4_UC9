@@ -9,6 +9,6 @@ namespace BE7_FS4_UC9.Classes
         public Endereco ?endereco { get; set; }
         public string ?rendimento { get; set; }
 
-        public abstract float PagarImposto(float rendimento);
+        public abstract float PagarImposto(float rendimento); //método abstrado não tem implementação
     }
 }
