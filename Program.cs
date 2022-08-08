@@ -47,7 +47,7 @@ do
             novaPf.nome = "Brener Pittner";
             novaPf.dataNascimento = "12/05/1995";
             novaPf.cpf = "12345678900";
-            novaPf.rendimento = "600.0f";
+            novaPf.rendimento = 2000.0f;
 
             novoEnd.Logradouro = "Avenida 6";
             novoEnd.numero = 619;
@@ -58,7 +58,8 @@ do
             Console.WriteLine(@$"
                 Nome: {novaPf.nome}
                 Logadouro: {novaPf.endereco.Logradouro}, Numero: {novaPf.endereco.numero}, Complemento: {novaPf.endereco.complemento}, EndComercial: {novaPf.endereco.endComercial}
-                Maior de idade: {metodoPf.ValidarDataNascimento(novaPf.dataNascimento)}
+                Maior de idade: {(metodoPf.ValidarDataNascimento(novaPf.dataNascimento) ? "Sim":"Não")}
+                Taxa de Imposto: {metodoPf.PagarImposto(novaPf.rendimento).ToString("C")}
             ");
             Console.WriteLine($"Aperte 'Enter' para continuar");
             Console.ReadLine();
@@ -70,7 +71,7 @@ do
             novaPj.nome = "MAGAZINE LUIZA";
             novaPj.cnpj = "47.960.950/0001-21";
             novaPj.razaoSocial = "MAGAZINE LUIZA S/A";
-            novaPj.rendimento = "8000.0f";
+            novaPj.rendimento = 8000.0f;
 
             novoEndPj.Logradouro = "Avenida 6";
             novoEndPj.numero = 619;
@@ -82,8 +83,8 @@ do
                 Nome: {novaPj.nome}
                 Razão Social: {novaPj.razaoSocial}
                 CNPJ: {novaPj.cnpj}
-                CNPJ é valido: {novaPj.ValidarCnpj(novaPj.cnpj)}
-                CNPJ é valido2: {novaPj.IsCnpj(novaPj.cnpj)}
+                CNPJ é valido: {(novaPj.ValidarCnpj(novaPj.cnpj) ? "sim":"não")}
+                Taxa de Imposto: {novaPj.PagarImposto(novaPj.rendimento).ToString("C")}
             ");
             Console.WriteLine($"Aperte 'Enter para continuar'");
             Console.ReadLine();

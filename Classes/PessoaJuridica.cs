@@ -1,13 +1,30 @@
  using BE7_FS4_UC9.Interfaces;
  using System.Text.RegularExpressions;
 
-namespace BE7_FS4_UC9.Classes{
-    public class PessoaJuridica : Pessoa, IPessoaJuridica{
+namespace BE7_FS4_UC9.Classes
+{
+	public class PessoaJuridica : Pessoa, IPessoaJuridica
+	{
         public string ?cnpj { get; set; }
         public string ?razaoSocial { get; set; }       
-        
+
         public override float PagarImposto(float rendimento){
-            throw new NotImplementedException();
+            /* Impostos
+            até    1500 - 3%
+            1500 - 3500 - 5%
+            3500 - 6000 - 7%
+            acima  6000 - 9%
+            */
+		
+            if (rendimento <= 1500){
+                return (rendimento/100)*3;
+            }else if (rendimento > 1500 && rendimento <= 3500) {
+                return (rendimento/100)*5;
+            }else if (rendimento > 3500 && rendimento <=6000) {
+                return (rendimento/100)*7;
+            }else {
+                return (rendimento/100)*9;
+            }
         }
 
         public bool ValidarCnpj(string cnpj){
