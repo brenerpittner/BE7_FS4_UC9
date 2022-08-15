@@ -14,6 +14,7 @@ Console.WriteLine(@$"
 loading("Carregando", 50);
 
 List<PessoaFisica> listaPf = new List<PessoaFisica>();
+List<PessoaJuridica> listaPj = new List<PessoaJuridica>();
 
 string? opcao;
 do
@@ -149,29 +150,120 @@ do
 
             break;
         case "2":
-            PessoaJuridica novaPj = new PessoaJuridica();
-            Endereco novoEndPj = new Endereco();
-            novaPj.nome = "MAGAZINE LUIZA";
-            novaPj.cnpj = "47.960.950/0001-21";
-            novaPj.razaoSocial = "MAGAZINE LUIZA S/A";
-            novaPj.rendimento = 8000.0f;
+            PessoaJuridica metodoPj = new PessoaJuridica();
+            string? opcaoPj;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine(@$"
+=================================================================
+=================================================================
+|                                                               |
+|               Escolha uma das opções a seguir                 |
+|                                                               |
+|                   1 - Cadastrar Pessoa Jurídica               |
+|                   2 - Mostrar Pessoa Jurídica                 |
+|                                                               |
+|                   0 - Sair                                    |
+|                                                               |
+=================================================================
+=================================================================
+");
+                opcaoPj = Console.ReadLine();
+                switch (opcaoPj)
+                {
+                    case "1":
+                        PessoaJuridica novaPj = new PessoaJuridica();
+                        Endereco novoEndPj = new Endereco();
 
-            novoEndPj.Logradouro = "Avenida 6";
-            novoEndPj.numero = 619;
-            novoEndPj.complemento = "Casa 2";
-            novoEndPj.endComercial = true;
-            novaPj.endereco = novoEndPj;
+                        Console.WriteLine($"Digite o nome da pessoa jurídica que deseja cadastrar");
+                        novaPj.nome = Console.ReadLine();
 
-            Console.WriteLine(@$"
-                Nome: {novaPj.nome}
-                Razão Social: {novaPj.razaoSocial}
-                CNPJ: {novaPj.cnpj}
-                CNPJ é valido: {(novaPj.ValidarCnpj(novaPj.cnpj) ? "sim":"não")}
-                Taxa de Imposto: {novaPj.PagarImposto(novaPj.rendimento).ToString("C")}
-            ");
-            Console.WriteLine($"Aperte 'Enter para continuar'");
-            Console.ReadLine();
-            Console.Clear();
+                        bool cnpjValida;
+                        do
+                        {
+                            Console.WriteLine($"Digite o cnpj Ex.: xx.xxx.xxx/xxxx-xx");
+                            string? cnpjString = Console.ReadLine();
+
+                            cnpjValida = metodoPj.ValidarCnpj(cnpjString);
+                            if(cnpjValida){
+                                novaPj.cnpj = cnpjString;
+                            }else{
+                                Console.ForegroundColor = ConsoleColor.DarkRed;
+                                Console.WriteLine($"CNPJ inválida, digite CNPJ válida"); //to test 80.804.340/0001-04
+                                Console.ResetColor();
+                            }
+                        } while (cnpjValida == false);
+
+                        Console.WriteLine($"Digite a razão social");
+                        novaPj.razaoSocial = Console.ReadLine();
+
+                        Console.WriteLine($"Digite o rendimento mensal");
+                        novaPj.rendimento = float.Parse(Console.ReadLine());
+
+                        Console.WriteLine($"Digite o logradouro");
+                        novoEndPj.Logradouro = Console.ReadLine();
+
+                        Console.WriteLine($"Digite o numero");
+                        novoEndPj.numero = int.Parse(Console.ReadLine());
+
+                        Console.WriteLine($"Digite o complemento (enter para vazio)");
+                        novoEndPj.complemento = Console.ReadLine();
+
+                        Console.WriteLine($"Este endereço é comercial? S ou N");
+                        string endCom = Console.ReadLine().ToUpper();
+                        
+                        if (endCom == "S")
+                        {
+                            novoEndPj.endComercial = true;
+                        }else{
+                            novoEndPj.endComercial = false;
+                        }
+
+                        novaPj.endereco = novoEndPj;
+                        listaPj.Add(novaPj);
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine($"Cadastrado com sucesso!");
+                        Console.ResetColor();
+                        break;
+                    case "2":
+                        Console.Clear();
+                        if (listaPj.Count > 0){
+                            foreach (PessoaJuridica cadaPessoa in listaPj)
+                            {
+                                Console.WriteLine(@$"
+                                    Nome: {cadaPessoa.nome}
+                                    Razão Social: {cadaPessoa.razaoSocial}
+                                    CNPJ: {cadaPessoa.cnpj}
+                                    CNPJ é valido: {(cadaPessoa.ValidarCnpj(cadaPessoa.cnpj) ? "sim":"não")}
+                                    Taxa de Imposto: {cadaPessoa.PagarImposto(cadaPessoa.rendimento).ToString("C")}
+                                ");
+                                Console.WriteLine($"Aperte 'Enter para continuar'");
+                                Console.ReadLine();
+                                Console.Clear();
+                            }
+
+                        }else{
+                            Console.WriteLine($"Lista vazia");
+                            Thread.Sleep(3000);
+                        }
+
+
+
+                        break;
+                    case "0":
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine($"Opção Inválida, por favor digite outra opção.");
+                        Thread.Sleep(2000);
+                        break;
+                }
+            } while (opcaoPj != "0");
+
+        /*
+
+            */
             break;
         case "0":
             loading("Finalizando", 1000);
