@@ -110,13 +110,27 @@ do
                         }
 
                         novaPf.endereco = novoEnd;
-                        listaPf.Add(novaPf);
+                        
+                        //listaPf.Add(novaPf);
+                        
+                        using (StreamWriter sw = new StreamWriter($"{novaPf.nome}.txt"))
+                        {
+                            sw.WriteLine(novaPf.nome);
+                            sw.WriteLine(novaPf.dataNascimento);
+                            sw.WriteLine(novaPf.cpf);
+                            sw.WriteLine(novaPf.rendimento);
+                            sw.WriteLine(novoEnd.Logradouro);
+                            sw.WriteLine(novoEnd.numero);
+                            sw.Write(novoEnd.complemento);
+                        }
+                        
                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                         Console.WriteLine($"Cadastrado com sucesso!");
                         Console.ResetColor();
                         break;
                     case "2":
                         Console.Clear();
+                        /*
                         if (listaPf.Count > 0){
                             foreach (PessoaFisica cadaPessoa in listaPf)
                             {
@@ -136,6 +150,17 @@ do
                             Console.WriteLine($"Lista vazia");
                             Thread.Sleep(3000);
                         }
+                        */
+                        using (StreamReader sr = new StreamReader($"marcelino.txt"))
+                        {
+                            string line;
+                            while ((line = sr.ReadLine()) != null)
+                            {
+                                Console.WriteLine(line);
+                            }
+                        }
+                        Console.WriteLine($"Aperte ENTER para continuar...");
+                        Console.ReadLine();                        
                         break;
                     case "0":
                         break;
@@ -221,13 +246,31 @@ do
                         }
 
                         novaPj.endereco = novoEndPj;
-                        listaPj.Add(novaPj);
+                        metodoPj.Inserir(novaPj);
+                        //listaPj.Add(novaPj);
                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                         Console.WriteLine($"Cadastrado com sucesso!");
                         Console.ResetColor();
                         break;
                     case "2":
                         Console.Clear();
+                        List<PessoaJuridica> listPj = metodoPj.Ler();
+                        
+                        foreach (PessoaJuridica cadaPessoa in listPj)
+                        {
+                            Console.WriteLine(@$"
+                                Nome: {cadaPessoa.nome}
+                                Razão Social: {cadaPessoa.razaoSocial}
+                                CNPJ: {cadaPessoa.cnpj}
+                                CNPJ é valido: {(cadaPessoa.ValidarCnpj(cadaPessoa.cnpj) ? "sim":"não")}
+                                Taxa de Imposto: {cadaPessoa.PagarImposto(cadaPessoa.rendimento).ToString("C")}
+                            ");
+                            Console.WriteLine($"Aperte 'Enter para continuar'");
+                            Console.ReadLine();
+                            Console.Clear();
+                        }
+
+                        /*
                         if (listaPj.Count > 0){
                             foreach (PessoaJuridica cadaPessoa in listaPj)
                             {
@@ -247,9 +290,7 @@ do
                             Console.WriteLine($"Lista vazia");
                             Thread.Sleep(3000);
                         }
-
-
-
+                        */
                         break;
                     case "0":
                         break;
